@@ -16,10 +16,16 @@ function App() {
   const [brands, setBrands] = useState([]);
   const [sizes, setSizes] = useState([]);
   const [ideals, setIdeals] = useState('');
+  const [priceSort, setPriceSort] = useState('');
 
   useEffect(() => {
     let filterdProducts = data;
-    if (!brands.length && !sizes.length && !ideals) setProducts(data);
+    if (!brands.length && !sizes.length && !ideals && !priceSort)
+      setProducts(data);
+    if (priceSort)
+      filterdProducts.sort(
+        (a, b) => (a.price - b.price) * (priceSort === 'h2l' ? 1 : -1)
+      );
     if (brands.length)
       filterdProducts = filterdProducts.filter((pdt) =>
         brands.includes(pdt.brand)
@@ -33,12 +39,17 @@ function App() {
         pdt.idealFor.includes(ideals)
       );
     setProducts(filterdProducts ?? []);
-  }, [brands, sizes, ideals]);
+  }, [brands, sizes, ideals, priceSort]);
 
   const clearFilter = () => {
     setBrands([]);
     setSizes([]);
     setIdeals('');
+    setPriceSort('');
+  };
+
+  const onPriceSortChange = (e) => {
+    setPriceSort(e.target.value);
   };
 
   const onBrandChange = (e) => {
@@ -65,6 +76,26 @@ function App() {
       </header>
       <section className='filter'>
         <button onClick={clearFilter}>Clear Filter</button>
+        <div>
+          <header>Price</header>
+          <ul>
+            {['h2l', 'l2h'].map((sort) => (
+              <li key={sort}>
+                <input
+                  id={sort}
+                  name='priceSort'
+                  onChange={onPriceSortChange}
+                  type='radio'
+                  checked={priceSort === sort}
+                  value={sort}
+                />
+                <label htmlFor={sort}>
+                  {sort === 'h2l' ? 'High to Low' : 'Low to High'}
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div>
           <header>Brands</header>
           <ul>
