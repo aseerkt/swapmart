@@ -1,0 +1,71 @@
+.app {
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+  padding: 5rem 0.5rem;
+  position: relative;
+  background-color: #f1efef;
+}
+
+.app_title {
+  position: absolute;
+  font-size: 2rem;
+  font-weight: bold;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #333;
+}
+
+.app_title img {
+  margin-bottom: -0.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.filter {
+  background-color: #fff;
+  flex: 0.3;
+  margin-right: 1rem;
+  padding: 1rem;
+  height: 100%;
+}
+.filter header {
+  text-transform: uppercase;
+  border-bottom: 2px solid lightgray;
+  padding-bottom: 0.3rem;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.filter ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.filter ul li {
+  margin-bottom: 0.3rem;
+}
+
+.filter ul li input {
+  margin-right: 0.5rem;
+}
+
+.filter ul li input,
+.filter ul li label {
+  cursor: pointer;
+}
+
+.product_list {
+  height: 100%;
+  padding: 1rem 0.5rem;
+  background-color: #fff;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.no_product_message {
+  height: 100%;
+}
