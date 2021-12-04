@@ -3,19 +3,19 @@ import './App.css';
 import Product from './components/Product';
 import data from './data';
 import vitelogo from './favicon.svg';
-import { unique } from './helpers';
+import { unique, arrayFlatChecker } from './helpers';
 
 const allBrands = unique(
   data.reduce((prev, curr) => prev.concat(curr.brand), [])
 );
 const allSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-let arrayFlatChecker = (arr, target) => target.every((v) => arr.includes(v));
+const allIdeals = ['Men', 'Women', 'Men-Women'];
 
 function App() {
   const [products, setProducts] = useState([]);
   const [brands, setBrands] = useState([]);
   const [sizes, setSizes] = useState([]);
-  const [ideals, setIdeals] = useState('');
+  const [ideals, setIdeals] = useState([]);
   const [priceSort, setPriceSort] = useState('');
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
       setProducts(data);
     if (priceSort)
       filterdProducts.sort(
-        (a, b) => (a.price - b.price) * (priceSort === 'h2l' ? 1 : -1)
+        (a, b) => (a.price - b.price) * (priceSort === 'h2l' ? -1 : 1)
       );
     if (brands.length)
       filterdProducts = filterdProducts.filter((pdt) =>
@@ -36,7 +36,7 @@ function App() {
       );
     if (ideals)
       filterdProducts = filterdProducts.filter((pdt) =>
-        pdt.idealFor.includes(ideals)
+        arrayFlatChecker(pdt.idealFor, ideals)
       );
     setProducts(filterdProducts ?? []);
   }, [brands, sizes, ideals, priceSort]);
@@ -44,7 +44,7 @@ function App() {
   const clearFilter = () => {
     setBrands([]);
     setSizes([]);
-    setIdeals('');
+    setIdeals([]);
     setPriceSort('');
   };
 
@@ -65,7 +65,11 @@ function App() {
   };
 
   const onIdealChange = (e) => {
-    setIdeals(e.target.value);
+    setIdeals(
+      e.target.value.includes('-')
+        ? e.target.value.split('-')
+        : [e.target.value]
+    );
   };
 
   return (
@@ -75,9 +79,11 @@ function App() {
         apmart
       </header>
       <section className='filter'>
-        <button onClick={clearFilter}>Clear Filter</button>
+        <button className='clear_filter' onClick={clearFilter}>
+          Clear Filter
+        </button>
         <div>
-          <header>Price</header>
+          <header>Sort by</header>
           <ul>
             {['h2l', 'l2h'].map((sort) => (
               <li key={sort}>
@@ -90,7 +96,7 @@ function App() {
                   value={sort}
                 />
                 <label htmlFor={sort}>
-                  {sort === 'h2l' ? 'High to Low' : 'Low to High'}
+                  Price: {sort === 'h2l' ? 'High to Low' : 'Low to High'}
                 </label>
               </li>
             ))}
@@ -134,39 +140,19 @@ function App() {
         <div>
           <header>Ideal For</header>
           <ul>
-            <li>
-              <input
-                id='Men'
-                name='ideal'
-                onChange={onIdealChange}
-                type='radio'
-                checked={ideals === 'Men'}
-                value='Men'
-              />
-              <label htmlFor='Men'>Men</label>
-            </li>
-            <li>
-              <input
-                id='Women'
-                name='ideal'
-                onChange={onIdealChange}
-                type='radio'
-                checked={ideals === 'Women'}
-                value='Women'
-              />
-              <label htmlFor='Women'>Women</label>
-            </li>
-            <li>
-              <input
-                id='MenWomen'
-                name='ideal'
-                onChange={onIdealChange}
-                type='radio'
-                checked={ideals === 'MenWomen'}
-                value='MenWomen'
-              />
-              <label htmlFor='MenWomen'>Men &amp; Women</label>
-            </li>
+            {allIdeals.map((ideal) => (
+              <li key={ideal}>
+                <input
+                  id={ideal}
+                  name='ideals'
+                  onChange={onIdealChange}
+                  type='radio'
+                  checked={ideals.join('-') === ideal}
+                  value={ideal}
+                />
+                <label htmlFor={ideal}>{ideal.replace('-', ' & ')}</label>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

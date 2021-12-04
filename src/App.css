@@ -1,5 +1,6 @@
 .app {
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.35fr auto;
   overflow: hidden;
   height: 100%;
   padding: 5rem 0.5rem;
@@ -25,7 +26,6 @@
 
 .filter {
   background-color: #fff;
-  flex: 0.3;
   margin-right: 1rem;
   padding: 1rem;
   height: 100%;
@@ -60,12 +60,24 @@
   height: 100%;
   padding: 1rem 0.5rem;
   background-color: #fff;
-  flex: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
 
 .no_product_message {
   height: 100%;
+}
+
+.clear_filter {
+  padding: 0.3rem;
+  cursor: pointer;
+  font-weight: thin;
+  border: 0;
+  border-radius: 0.3rem;
+  background-color: #3939f3;
+  font-size: 1.2rem;
+  color: white;
+  display: block;
+  width: 100%;
 }

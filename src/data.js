@@ -7,7 +7,7 @@ const data = [
     image:
       'https://rukminim1.flixcart.com/image/470/564/kflftzk0/jacket/p/z/z/xxl-1285-fk-breil-by-fort-collins-original-imafwyyegzzyx6s5.jpeg?q=50',
     sizes: ['M'],
-    idealFor: 'Men',
+    idealFor: ['Men'],
   },
   {
     id: 'uhfyw4',
@@ -17,7 +17,7 @@ const data = [
     image:
       'https://rukminim1.flixcart.com/image/470/564/kruyw7k0/jacket/i/g/n/m-12128fk-breil-by-fort-collins-original-imag5kyqpnkt5qhw.jpeg?q=50',
     sizes: ['M', 'L', 'XL', 'XXL'],
-    idealFor: 'Men',
+    idealFor: ['Men'],
   },
   {
     id: 'ygeg34',
@@ -27,7 +27,7 @@ const data = [
     image:
       'https://rukminim1.flixcart.com/image/470/564/kl2mljk0/t-shirt/a/3/k/4xl-tblhdfulmask-lion-tripr-original-imagy9tcx7q25wym.jpeg?q=50',
     sizes: ['M'],
-    idealFor: 'Men',
+    idealFor: ['Men'],
   },
   {
     id: 'uyth24',
@@ -37,7 +37,7 @@ const data = [
     image:
       'https://rukminim1.flixcart.com/image/470/564/krqoknk0/jacket/1/w/d/xxl-trdgynvhdfuljacket-k15-tripr-original-imag5gganntw7xsg.jpeg?q=50',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    idealFor: 'Men',
+    idealFor: ['Men'],
   },
   {
     id: 'uhyw34',
@@ -48,7 +48,7 @@ const data = [
       'https://rukminim1.flixcart.com/image/470/564/k4u7i4w0/jacket/4/7/b/m-2325-darzi-original-imafnnz8schtzv3s.jpeg?q=50',
 
     sizes: ['S', 'M', 'L', 'XL'],
-    idealFor: 'Women',
+    idealFor: ['Women'],
   },
   {
     id: 'ftwx45',
@@ -59,7 +59,7 @@ const data = [
       'https://rukminim1.flixcart.com/image/470/564/j9st5zk0/sweatshirt/z/f/y/l-whomaroon-whoroyalblue-fleximaa-original-imaezgd5usq5z74v.jpeg?q=50',
 
     sizes: ['L', 'XL', 'XXL'],
-    idealFor: 'Women',
+    idealFor: ['Women'],
   },
   {
     id: 'iuwemo2',
@@ -70,7 +70,7 @@ const data = [
       'https://rukminim1.flixcart.com/image/470/564/kikluvk0-0/sweatshirt/r/n/s/xxl-dont-quit-hoodie-divra-clothing-original-imafybpwwayyswhm.jpeg?q=50',
 
     sizes: ['XS', 'S', 'L', 'XL', 'XXL'],
-    idealFor: 'MenWomen',
+    idealFor: ['Men', 'Women'],
   },
   {
     id: 'ghasdfs',
@@ -81,7 +81,7 @@ const data = [
       'https://rukminim1.flixcart.com/image/470/564/kt4ozgw0/jacket/d/d/a/s-no-poly-jacket-versatyl-original-imag6jfdagff4yne.jpeg?q=50',
 
     sizes: ['L'],
-    idealFor: 'MenWomen',
+    idealFor: ['Men', 'Women'],
   },
 ];
 
